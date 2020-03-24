@@ -10,6 +10,11 @@ function App() {
     lname: '',
     role: ''
   })
+  const [memberToEdit, setMemberEdit] = useState({
+    fname: '',
+    lname: '',
+    role: ''
+  })
   // for onChange event handler
   const onInputChange = event => {
     // name of input being changed
@@ -34,6 +39,7 @@ function App() {
     // adding member to team member array
     setMembers([...members, newMember])
   }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -41,10 +47,16 @@ function App() {
         onInputChange={onInputChange}
         formValues={formValues}
         onFormSubmit={onFormSubmit}
+        
       />
       <h3>List of Team Members:</h3>
       {
-        members.map(member => <div key={member.id}>{member.fname} {member.lname}: {member.role}</div>)
+        members.map((member, index) => (
+          <div key={index}>
+            {member.fname} {member.lname}: {member.role}  
+            <button>Edit</button>
+          </div>
+        ))
       }
       </header>
     </div>
